@@ -1,0 +1,64 @@
+<!-- base.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    
+    <!-- Lien vers Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    
+    <!-- Lien vers votre propre fichier CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Ajoutez d'autres liens vers les fichiers CSS si nécessaire -->
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="navbar-left">
+            <span class="navbar-title">EHTP-BioCare</span>
+        </div>
+        <div class="navbar-right">
+            
+            <ul class="navbar-nav mr-auto">
+
+                {% if user.is_authenticated %}
+
+                <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'accueil' %}">Accueil</a>
+                </li>
+                <li class="nav-item {% if request.path == '/classify/' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'classify_image' %}">Classifier</a>
+                </li>
+                
+                <li class="nav-item {% if request.path == '/profile/' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'profile' %}">Profil</a>
+                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Déconnexion</a>
+                    </li>
+                    
+                {% else %}
+                    <li class="nav-item {% if request.path == '/login/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'login' %}">Connexion</a>
+                    </li>
+                    <li class="nav-item {% if request.path == '/register/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'register' %}">Inscription</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenu spécifique à chaque page -->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Scripts JavaScript si nécessaire -->
+</body>
+</html>

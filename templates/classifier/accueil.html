@@ -1,0 +1,36 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}
+    Accueil - EHTP-BioCare
+{% endblock %}
+
+{% block content %}
+    <h1>Bienvenue {{ username|capfirst }} !</h1>
+    <hr>  
+    <div class="grid">
+        <section>
+            <h2>À propos de notre projet</h2>
+            <hr>
+            <p>Notre projet EHTP-BioCare vise à utiliser la technologie de classification d'images pour améliorer la détection précoce des maladies des plantes, soutenir une agriculture durable et optimiser l'utilisation des ressources agricoles.</p>
+        </section>
+        
+        <section>
+            <h2>Comment utiliser l'application</h2>
+            <hr>
+            <p>Instructions simples sur la façon d'utiliser l'outil de classification :</p>
+            <ol>
+                <li>Téléchargez une image à classifier</li>
+                <li>Cliquez sur le bouton "Classifier"</li>
+                <li>Explorez les résultats de classification</li>
+            </ol>
+        </section>
+        
+        <section>
+            <h2>Contactez-nous</h2>
+            <hr>
+            <p>Besoin d'aide ? Contactez notre équipe !</p>
+            <p>Email : ehtpdjangoservice@gmail.com</p>
+            <p>Téléphone : +212 520 42 05 12</p>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'partials/base.html' %}
+{% block title %}
+    Classifier - EHTP-BioCare
+{% endblock %}
+{% block content %}
+    <h1>Classifier Votre Image De Plante</h1>
+    <hr> 
+    <!-- Formulaire de téléchargement d'image -->
+    <form method="post" enctype="multipart/form-data" action="{% url 'classify_image' %}">
+        {% csrf_token %}
+        <!-- Champ pour télécharger l'image -->
+        {{ form.image.label_tag }}
+        {{ form.image }}
+        <!-- Bouton pour soumettre le formulaire -->
+        <div class="center-button">
+            <button type="submit">Classer l'image</button>
+        </div>
+    </form>
+    <!-- Affichage de la prédiction si disponible -->
+    {% if prediction %}
+        <img src="{{ uploaded_image_url }}" alt="Image téléchargée">
+        <div class="result">
+            <h1>Résultat de la classification :</h1>
+            <h2>Catégorie :</h2>
+            <p>{{ category }}</p>
+            {% if is_healthy %}
+                <h2>Description :</h2>
+                <p>{{ prediction }}</p>
+                <h2>Traitement :</h2>
+                <p>{{ description }}</p>
+            {% else %}
+                <h2>Maladie :</h2>
+                <p>{{ prediction }}</p>
+                <h2>Traitement :</h2>
+                <p>{{ description }}</p>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

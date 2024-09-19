@@ -1,0 +1,15 @@
+<!-- profile.html -->
+
+{% extends 'partials/base.html' %}
+{% load crispy_forms_tags %}  <!-- Chargez les tags Crispy Forms -->
+{% block title %}Profil - EHTP-BioCare{% endblock %}
+
+{% block content %}
+  <h1>Mon Profil</h1>
+  <hr>
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit">Enregistrer</button>
+  </form>
+{% endblock %}

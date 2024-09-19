@@ -1,0 +1,19 @@
+<!-- login.html -->
+
+{% extends 'partials/base.html' %}
+{% load crispy_forms_tags %}  <!-- Chargez les tags Crispy Forms -->
+
+{% block title %}Connexion - EHTP-BioCare{% endblock %}
+
+{% block content %}
+    <h1>Connexion</h1>
+    <hr>  
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}  <!-- Utilisez |crispy pour appliquer Crispy Forms -->
+        <button type="submit">Se connecter</button>
+        <a class="mx-4" href="{% url 'password_reset' %}">Mot de passe Oublié?</a>
+        <hr>
+        <p>Vous n'avez pas de compte ? <a href="{% url 'register' %}">S'inscrire</a></p>
+    </form>
+{% endblock %}
